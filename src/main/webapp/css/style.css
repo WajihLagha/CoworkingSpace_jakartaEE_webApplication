@@ -1,0 +1,49 @@
+@charset "UTF-8";
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: #f5f6fa;
+    margin: 0; padding: 0;
+}
+
+.menu-cards {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    margin: 40px 0;
+}
+.menu-card {
+    width: 250px;
+    border-radius: 18px;
+    background: #fff;
+    box-shadow: 0 0 15px #dfdfdf;
+    transition: transform 0.2s;
+    text-align: center;
+    padding: 30px 20px;
+}
+.menu-card:hover {
+    transform: translateY(-8px) scale(1.04);
+    box-shadow: 0 8px 48px #bfbfbf;
+}
+.menu-card img {
+    width: 85px;
+    height: 85px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+}
+.menu-card .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.button-main {
+    background: #2889f6;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 25px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px 0 0 0;
+    transition: background 0.18s;
+}
+.button-main:hover { background: #1967bb; }
