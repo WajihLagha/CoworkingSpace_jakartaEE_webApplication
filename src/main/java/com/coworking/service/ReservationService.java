@@ -3,6 +3,7 @@ package com.coworking.service;
 import com.coworking.dao.ReservationDAO;
 import com.coworking.dao.EspaceTravailDAO;
 import com.coworking.model.*;
+import com.coworking.dao.JPAUtil;
 import jakarta.persistence.EntityManager;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,16 +23,16 @@ public class ReservationService {
 
     // Vérifier s’il existe un conflit (espace déjà réservé à la même période)
     public boolean hasConflict(Long espaceId, LocalDateTime debut, LocalDateTime fin) {
-        EntityManager em = com.coworking.dao.JPAUtil.getEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
         try {
             String jpql = "SELECT COUNT(r) FROM Reservation r WHERE r.espaceTravail.id = :eid "
-                        + "AND r.statut != 'ANNULEE' "
-                        + "AND (r.dateHeureDebut < :fin AND r.dateHeureFin > :debut)";
+                    + "AND r.statut != 'ANNULEE' "
+                    + "AND (r.dateHeureDebut < :fin AND r.dateHeureFin > :debut)";
             Long count = em.createQuery(jpql, Long.class)
-                .setParameter("eid", espaceId)
-                .setParameter("debut", debut)
-                .setParameter("fin", fin)
-                .getSingleResult();
+                    .setParameter("eid", espaceId)
+                    .setParameter("debut", debut)
+                    .setParameter("fin", fin)
+                    .getSingleResult();
             return (count > 0);
         } finally {
             em.close();
@@ -49,8 +50,14 @@ public class ReservationService {
         long minutes = java.time.Duration.between(resa.getDateHeureDebut(), resa.getDateHeureFin()).toMinutes();
         double hours = minutes / 60.0;
         double prixBase = resa.getEspaceTravail().getPrixHoraire().doubleValue() * hours;
-        double prixSupp = (resa.getSupplements() == null) ? 0 :
-            resa.getSupplements().stream().mapToDouble(s -> s.getPrixUnitaire().doubleValue()).sum();
+
+        // Apply student discount (20%)
+        if (resa.getUtilisateur().getTypeUtilisateur() == TypeUtilisateur.ETUDIANT) {
+            prixBase = prixBase * 0.8;
+        }
+
+        double prixSupp = (resa.getSupplements() == null) ? 0
+                : resa.getSupplements().stream().mapToDouble(s -> s.getPrixUnitaire().doubleValue()).sum();
         resa.setMontantTotal(java.math.BigDecimal.valueOf(prixBase + prixSupp));
 
         reservationDAO.save(resa);
@@ -68,10 +75,9 @@ public class ReservationService {
             reservationDAO.update(resa);
         }
     }
-    
+
     public List<Reservation> findAll() {
         return reservationDAO.findAll();
     }
-
 
 }
