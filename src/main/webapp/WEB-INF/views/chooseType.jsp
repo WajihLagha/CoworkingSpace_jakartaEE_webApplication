@@ -8,7 +8,7 @@
 
     <!-- Google Fonts -->
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500 ;600;700&family=Poppins:wght@500;600;700&display=swap"
         rel="stylesheet">
 
     <!-- Bootstrap 5.3.3 CSS -->
@@ -43,11 +43,11 @@
 
             <form action="${pageContext.request.contextPath}/workspaces" method="post">
                 <div class="row g-4">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <button type="submit" name="typeEspace" value="BUREAU" class="menu-card w-100 border-0 p-0">
                             <div class="card h-100 border-0 shadow hover-lift">
                                 <img src="${pageContext.request.contextPath}/images/bureau.jpg" alt="Bureau individuel"
-                                    class="card-img-top" style="height: 300px; object-fit: cover;" />
+                                    class="card-img-top" style="height: 180px; object-fit: cover;" />
                                 <div class="card-body text-center p-4">
                                     <h5 class="card-title fw-bold">Bureau Individuel</h5>
                                     <p class="card-text text-muted">Espace de travail prive et calme pour une personne
@@ -58,14 +58,14 @@
                         </button>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <button type="submit" name="typeEspace" value="SALLE_REUNION"
                             class="menu-card w-100 border-0 p-0">
                             <div class="card h-100 border-0 shadow hover-lift">
                                 <img src="${pageContext.request.contextPath}/images/reunion.jpg" alt="Salle de reunion"
-                                    class="card-img-top" style="height: 300px; object-fit: cover;" />
+                                    class="card-img-top" style="height: 180px; object-fit: cover;" />
                                 <div class="card-body text-center p-4">
-                                    <h5 class="card-title fw-bold">Salle de Reunion</h5>
+                                    <h5 card-title fw-bold">Salle de Reunion</h5>
                                     <p class="card-text text-muted">Espace equipe pour vos reunions et presentations</p>
                                     <span class="btn btn-primary mt-2">Voir les salles</span>
                                 </div>
@@ -73,13 +73,13 @@
                         </button>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <button type="submit" name="typeEspace" value="SALLE_FORMATION"
                             class="menu-card w-100 border-0 p-0">
                             <div class="card h-100 border-0 shadow hover-lift">
                                 <img src="${pageContext.request.contextPath}/images/formation.jpg"
                                     alt="Salle de formation" class="card-img-top"
-                                    style="height: 300px; object-fit: cover;" />
+                                    style="height: 180px; object-fit: cover;" />
                                 <div class="card-body text-center p-4">
                                     <h5 class="card-title fw-bold">Salle de Formation</h5>
                                     <p class="card-text text-muted">Grand espace pour formations et ateliers</p>
