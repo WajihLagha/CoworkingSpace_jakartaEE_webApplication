@@ -145,16 +145,26 @@
                                         </div>
                                     </div>
                                 </div>
-                                </footer>
+                            </c:forEach>
+                        </div>
+                    </c:otherwise>
+                </c:choose>
+            </div>
+        </main>
 
-                                <!-- Bootstrap Bundle JS -->
-                                <script
-                                    src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                                    crossorigin="anonymous"></script>
+        <footer class="bg-dark text-light py-4 mt-auto">
+            <div class="container text-center">
+                <p class="mb-0">&copy; 2025 CoworkSpace. Tous droits reserves.</p>
+            </div>
+        </footer>
 
-                                <!-- Custom JS -->
-                                <script src="${pageContext.request.contextPath}/js/app.js"></script>
+        <!-- Bootstrap Bundle JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+            crossorigin="anonymous"></script>
+
+        <!-- Custom JS -->
+        <script src="${pageContext.request.contextPath}/js/app.js"></script>
     </body>
 
     </html>

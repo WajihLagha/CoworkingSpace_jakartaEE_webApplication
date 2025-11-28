@@ -85,12 +85,29 @@
                                     <option value="SALLE_FORMATION">Salle de formation</option>
                                 </select>
                             </div>
-                            <div class="col-md-4">
+                            <div class="col-md-6">
                                 <label for="capacite" class="form-label">Capacite (personnes) <span
                                         class="text-danger">*</span></label>
                                 <input type="number" id="capacite" name="capacite" class="form-control" min="1"
                                     placeholder="Ex: 8" required />
                             </div>
+                            <div class="col-md-6">
+                                <label for="prixHoraire" class="form-label">Prix Horaire (EUR) <span
+                                        class="text-danger">*</span></label>
+                                <input type="number" id="prixHoraire" name="prixHoraire" class="form-control"
+                                    step="0.01" min="0" placeholder="0.00" required />
+                            </div>
+                            <div class="col-12">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea id="description" name="description" class="form-control" rows="3"
+                                    placeholder="Description de l'espace..."></textarea>
+                            </div>
+                        </div>
+                        <div class="text-end mt-3">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="bi bi-plus-circle me-2"></i>Creer l'espace
+                            </button>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -103,22 +120,49 @@
                 <div class="card-body p-0">
                     <div class="table-responsive">
                         <table class="table table-hover align-middle mb-0">
-                            <td class="text-muted">#${workspace.id}</td>
-                            <td><strong>${workspace.nom}</strong></td>
-                            <td>
-                                <c:choose>
-                                    <c:when test="${workspace.typeEspace == 'BUREAU'}">
-                                        <span class="badge bg-info text-dark">Bureau</span>
-                                    </c:when>
-                                    <c:when test="${workspace.typeEspace == 'SALLE_REUNION'}">
-                                        <span class="badge bg-primary">Reunion</span>
-                                    </c:when>
-                                    <i class="bi bi-trash me-1"></i>Supprimer
-                                    </button>
-                                    </form>
-                            </td>
-                            </tr>
-                            </c:forEach>
+                            <thead class="table-light">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nom</th>
+                                    <th>Type</th>
+                                    <th>Capacite</th>
+                                    <th>Prix/h</th>
+                                    <th class="text-end">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="workspace" items="${workspaces}">
+                                    <tr>
+                                        <td class="text-muted">#${workspace.id}</td>
+                                        <td><strong>${workspace.nom}</strong></td>
+                                        <td>
+                                            <c:choose>
+                                                <c:when test="${workspace.typeEspace == 'BUREAU'}">
+                                                    <span class="badge bg-info text-dark">Bureau</span>
+                                                </c:when>
+                                                <c:when test="${workspace.typeEspace == 'SALLE_REUNION'}">
+                                                    <span class="badge bg-primary">Reunion</span>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <span class="badge bg-warning text-dark">Formation</span>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </td>
+                                        <td><i class="bi bi-people me-1"></i>${workspace.capacite}</td>
+                                        <td><strong class="text-primary">${workspace.prixHoraire} EUR</strong></td>
+                                        <td class="text-end">
+                                            <form action="${pageContext.request.contextPath}/admin/workspaces"
+                                                method="post" style="display:inline;"
+                                                onsubmit="return confirm('Etes-vous sur de vouloir supprimer cet espace ?')">
+                                                <input type="hidden" name="action" value="delete" />
+                                                <input type="hidden" name="workspaceId" value="${workspace.id}" />
+                                                <button type="submit" class="btn btn-danger btn-sm">
+                                                    <i class="bi bi-trash me-1"></i>Supprimer
+                                                </button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
