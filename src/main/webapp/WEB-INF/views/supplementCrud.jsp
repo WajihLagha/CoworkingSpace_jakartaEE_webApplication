@@ -71,13 +71,13 @@
                                 <label for="libelle" class="form-label">Libelle <span
                                         class="text-danger">*</span></label>
                                 <input type="text" id="libelle" name="libelle" class="form-control"
-                                    placeholder="Ex: Projecteur, Cafe illimite..." required />
+                                    placeholder="give supplement name" required />
                             </div>
                             <div class="col-md-4">
-                                <label for="prixUnitaire" class="form-label">Prix Unitaire (EUR) <span
+                                <label for="prixUnitaire" class="form-label">Prix Unitaire (DT) <span
                                         class="text-danger">*</span></label>
                                 <input type="number" id="prixUnitaire" name="prixUnitaire" class="form-control"
-                                    step="0.01" min="0" placeholder="0.00" required />
+                                    step="0.01" min="0" placeholder="give price" required />
                             </div>
                         </div>
                         <div class="text-end mt-3">
@@ -110,7 +110,7 @@
                                     <tr>
                                         <td class="text-muted">#${supp.id}</td>
                                         <td><strong>${supp.libelle}</strong></td>
-                                        <td><strong class="text-primary">${supp.prixUnitaire} EUR</strong></td>
+                                        <td><strong class="text-primary">${supp.prixUnitaire} DT</strong></td>
                                         <td class="text-end">
                                             <form action="${pageContext.request.contextPath}/admin/supplements"
                                                 method="post" style="display:inline;"

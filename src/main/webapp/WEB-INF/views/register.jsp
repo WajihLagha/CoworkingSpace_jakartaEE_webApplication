@@ -64,7 +64,7 @@
                             <div class="mb-3">
                                 <label for="nom" class="form-label">Nom complet <span
                                         class="text-danger">*</span></label>
-                                <input type="text" id="nom" name="nom" class="form-control" placeholder="Jean Dupont"
+                                <input type="text" id="nom" name="nom" class="form-control" placeholder="give your name"
                                     required autofocus>
                             </div>
 
@@ -72,7 +72,7 @@
                                 <label for="email" class="form-label">Adresse email <span
                                         class="text-danger">*</span></label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="jean.dupont@example.com" required>
+                                    placeholder="give your email" required>
                             </div>
 
                             <div class="mb-3">

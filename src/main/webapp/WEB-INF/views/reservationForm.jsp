@@ -104,13 +104,13 @@
                                             <c:when test="${sessionScope.utilisateur.typeUtilisateur == 'ETUDIANT'}">
                                                 <span
                                                     class="text-decoration-line-through text-muted fs-6 me-2">${prixBase}
-                                                    EUR</span>
+                                                    DT</span>
                                                 <fmt:formatNumber value="${prixReduit}" type="number"
-                                                    minFractionDigits="2" maxFractionDigits="2" /> EUR/h
+                                                    minFractionDigits="2" maxFractionDigits="2" /> DT/h
                                                 <span class="badge bg-success ms-2">-20%</span>
                                             </c:when>
                                             <c:otherwise>
-                                                ${prixBase} EUR/h
+                                                ${prixBase} DT/h
                                             </c:otherwise>
                                         </c:choose>
                                     </div>
@@ -168,7 +168,7 @@
                                                             <span class="fw-bold">${supplement.nom}</span>
                                                             <span
                                                                 class="badge bg-primary rounded-pill">+${supplement.prix}
-                                                                EUR</span>
+                                                                DT</span>
                                                         </div>
                                                     </label>
                                                 </div>

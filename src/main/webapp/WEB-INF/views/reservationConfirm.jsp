@@ -96,7 +96,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center pt-2">
                             <span class="text-muted fs-5">Prix total</span>
-                            <span class="fw-bold text-primary fs-3">${reservation.prixTotal} EUR</span>
+                            <span class="fw-bold text-primary fs-3">${reservation.prixTotal} DT</span>
                         </div>
                     </div>
                 </div>

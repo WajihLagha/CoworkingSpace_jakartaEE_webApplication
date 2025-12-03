@@ -64,7 +64,7 @@
                                 <label for="email" class="form-label">Adresse email <span
                                         class="text-danger">*</span></label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="votre@email.com" required autofocus>
+                                    placeholder="give your email" required autofocus>
                             </div>
 
                             <div class="mb-3">

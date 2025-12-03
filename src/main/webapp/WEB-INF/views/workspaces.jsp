@@ -131,17 +131,17 @@
                                                                 test="${sessionScope.utilisateur.typeUtilisateur == 'ETUDIANT'}">
                                                                 <span
                                                                     class="text-decoration-line-through text-muted fs-5">${espace.prixHoraire}
-                                                                    EUR</span>
+                                                                    DT</span>
                                                                 <span class="text-success">
                                                                     <fmt:formatNumber
                                                                         value="${espace.prixHoraire * 0.8}"
                                                                         type="number" minFractionDigits="2"
-                                                                        maxFractionDigits="2" /> EUR
+                                                                        maxFractionDigits="2" /> DT
                                                                 </span>
                                                                 <span class="badge bg-success ms-2">-20%</span>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                ${espace.prixHoraire} EUR
+                                                                ${espace.prixHoraire} DT
                                                             </c:otherwise>
                                                         </c:choose>
                                                     </div>

@@ -96,7 +96,7 @@
                                                     <td>${resa.espaceCoworking.nom}</td>
                                                     <td><small>${resa.dateHeureDebut}</small></td>
                                                     <td><small>${resa.dateHeureFin}</small></td>
-                                                    <td><strong class="text-primary">${resa.prixTotal} EUR</strong></td>
+                                                    <td><strong class="text-primary">${resa.prixTotal} DT</strong></td>
                                                     <td>
                                                         <c:choose>
                                                             <c:when test="${resa.statut == 'CONFIRMEE'}">

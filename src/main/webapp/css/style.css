@@ -53,7 +53,12 @@ body {
   font-family: var(--font-primary);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-heading);
 }
 
@@ -342,6 +347,7 @@ h1, h2, h3, h4, h5, h6 {
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
@@ -376,6 +382,7 @@ h1, h2, h3, h4, h5, h6 {
    9. PRINT STYLES
    ============================================ */
 @media print {
+
   .navbar,
   footer,
   .btn,
@@ -400,7 +407,7 @@ h1, h2, h3, h4, h5, h6 {
   .auth-main {
     padding: 2rem 1rem;
   }
-  
+
   .menu-card {
     margin-bottom: 1rem;
   }
@@ -417,19 +424,6 @@ h1, h2, h3, h4, h5, h6 {
 .btn-primary:hover {
   background-color: var(--color-primary-dark);
   border-color: var(--color-primary-dark);
-}
-
-.text-primary {
-  color: var(--color-primary) !important;
-}
-
-.bg-primary {
-  background-color: var(--color-primary) !important;
-}
-
-.btn-secondary {
-  background-color: var(--color-secondary);
-  border-color: var(--color-secondary);
 }
 
 .btn-secondary:hover {
@@ -460,7 +454,23 @@ h1, h2, h3, h4, h5, h6 {
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
+}
+
+/* ============================================
+   13. CUSTOM GRADIENTS
+   ============================================ */
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%) !important;
+}
+
+.bg-gradient-success {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+}
+
+.bg-gradient-info {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%) !important;
 }

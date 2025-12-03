@@ -3,14 +3,25 @@
     <persistence-unit name="coworkingPU" transaction-type="RESOURCE_LOCAL">
         <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
         <properties>
-            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/coworking_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC" />
+            <!-- JDBC Connection Settings -->
+            <property name="jakarta.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/coworking_db?useSSL=false&amp;allowPublicKeyRetrieval=true&amp;serverTimezone=UTC&amp;autoReconnect=true&amp;useUnicode=true&amp;characterEncoding=UTF-8" />
             <property name="jakarta.persistence.jdbc.user" value="root" />
             <property name="jakarta.persistence.jdbc.password" value="1234" />
             <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver" />
+            
+            <!-- Hibernate Settings -->
             <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
+            
+            <!-- Connection Pool Settings (using Hibernate's internal pool for simplicity) -->
+            <property name="hibernate.connection.pool_size" value="10" />
+            
+            <!-- Additional Performance Settings -->
+            <property name="hibernate.jdbc.batch_size" value="20" />
+            <property name="hibernate.order_inserts" value="true" />
+            <property name="hibernate.order_updates" value="true" />
         </properties>
     </persistence-unit>
 </persistence>

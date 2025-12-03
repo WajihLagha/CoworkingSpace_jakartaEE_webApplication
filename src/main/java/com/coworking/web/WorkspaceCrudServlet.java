@@ -16,10 +16,10 @@ public class WorkspaceCrudServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, java.io.IOException {
         List<EspaceTravail> espaces = espaceService.listerEspaces();
-        req.setAttribute("espaces", espaces);
+        req.setAttribute("workspaces", espaces);
         req.getRequestDispatcher("/WEB-INF/views/workspaceCrud.jsp").forward(req, resp);
     }
-    
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp)
             throws ServletException, java.io.IOException {
@@ -41,9 +41,9 @@ public class WorkspaceCrudServlet extends HttpServlet {
             espaceService.creerEspace(espace);
         }
 
-        // Modification d’un espace
+        // Modification d'un espace
         else if ("update".equals(action)) {
-            Long id = Long.parseLong(req.getParameter("espaceId"));
+            Long id = Long.parseLong(req.getParameter("workspaceId"));
             EspaceTravail espace = espaceService.findById(id);
             if (espace != null) {
                 espace.setNom(req.getParameter("nom"));
@@ -57,7 +57,7 @@ public class WorkspaceCrudServlet extends HttpServlet {
 
         // Suppression
         else if ("delete".equals(action)) {
-            Long id = Long.parseLong(req.getParameter("espaceId"));
+            Long id = Long.parseLong(req.getParameter("workspaceId"));
             espaceService.supprimerEspace(id);
         }
 

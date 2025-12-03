@@ -73,7 +73,7 @@
                                 <label for="nom" class="form-label">Nom de l'espace <span
                                         class="text-danger">*</span></label>
                                 <input type="text" id="nom" name="nom" class="form-control"
-                                    placeholder="Ex: Salle de reunion A1" required />
+                                    placeholder="give workspace name" required />
                             </div>
                             <div class="col-md-6">
                                 <label for="typeEspace" class="form-label">Type d'espace <span
@@ -89,18 +89,18 @@
                                 <label for="capacite" class="form-label">Capacite (personnes) <span
                                         class="text-danger">*</span></label>
                                 <input type="number" id="capacite" name="capacite" class="form-control" min="1"
-                                    placeholder="Ex: 8" required />
+                                    placeholder="give capacity" required />
                             </div>
                             <div class="col-md-6">
-                                <label for="prixHoraire" class="form-label">Prix Horaire (EUR) <span
+                                <label for="prixHoraire" class="form-label">Prix Horaire (DT) <span
                                         class="text-danger">*</span></label>
                                 <input type="number" id="prixHoraire" name="prixHoraire" class="form-control"
-                                    step="0.01" min="0" placeholder="0.00" required />
+                                    step="0.01" min="0" placeholder="give price" required />
                             </div>
                             <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea id="description" name="description" class="form-control" rows="3"
-                                    placeholder="Description de l'espace..."></textarea>
+                                    placeholder="give description"></textarea>
                             </div>
                         </div>
                         <div class="text-end mt-3">
@@ -149,7 +149,7 @@
                                             </c:choose>
                                         </td>
                                         <td><i class="bi bi-people me-1"></i>${workspace.capacite}</td>
-                                        <td><strong class="text-primary">${workspace.prixHoraire} EUR</strong></td>
+                                        <td><strong class="text-primary">${workspace.prixHoraire} DT</strong></td>
                                         <td class="text-end">
                                             <form action="${pageContext.request.contextPath}/admin/workspaces"
                                                 method="post" style="display:inline;"

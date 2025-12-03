@@ -8,21 +8,24 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.WebServlet;
 import java.util.List;
 
-@WebServlet("/workspaces")
+@WebServlet("/espaces")
 public class WorkspaceListServlet extends HttpServlet {
     private ReservationService reservationService = new ReservationService();
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, java.io.IOException {
-        String type = req.getParameter("typeEspace");
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, java.io.IOException {
+        String type = req.getParameter("type");
         TypeEspace typeEnum = TypeEspace.valueOf(type);
         // Adapt this for your filtering needs
         List<EspaceTravail> espaces = reservationService.getAvailableEspaces(typeEnum, null, null);
         req.setAttribute("espaces", espaces);
         req.getRequestDispatcher("/WEB-INF/views/workspaces.jsp").forward(req, resp);
     }
+
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, java.io.IOException {
-        doPost(req, resp); // fallback — adapt as needed
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, java.io.IOException {
+        doPost(req, resp); // fallback — adapt as needed
     }
 }

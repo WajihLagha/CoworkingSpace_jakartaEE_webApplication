@@ -72,13 +72,13 @@
                             <div class="col-md-6">
                                 <label for="nom" class="form-label">Nom complet <span
                                         class="text-danger">*</span></label>
-                                <input type="text" id="nom" name="nom" class="form-control"
-                                    placeholder="Ex: Jean Dupont" required />
+                                <input type="text" id="nom" name="nom" class="form-control" placeholder="give user name"
+                                    required />
                             </div>
                             <div class="col-md-6">
                                 <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
                                 <input type="email" id="email" name="email" class="form-control"
-                                    placeholder="Ex: jean@example.com" required />
+                                    placeholder="give user email" required />
                             </div>
                             <div class="col-md-6">
                                 <label for="motDePasse" class="form-label">Mot de passe <span
