@@ -58,7 +58,12 @@ public class WorkspaceCrudServlet extends HttpServlet {
         // Suppression
         else if ("delete".equals(action)) {
             Long id = Long.parseLong(req.getParameter("workspaceId"));
-            espaceService.supprimerEspace(id);
+            try {
+                espaceService.supprimerEspace(id);
+            } catch (RuntimeException e) {
+                // If deletion fails (e.g., due to existing reservations), store error message
+                req.getSession().setAttribute("errorMsg", e.getMessage());
+            }
         }
 
         resp.sendRedirect(req.getContextPath() + "/admin/workspaces");

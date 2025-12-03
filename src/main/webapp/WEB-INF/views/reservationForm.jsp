@@ -165,9 +165,9 @@
                                                         value="${supplement.id}" id="supp_${supplement.id}">
                                                     <label class="form-check-label w-100" for="supp_${supplement.id}">
                                                         <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="fw-bold">${supplement.nom}</span>
+                                                            <span class="fw-bold">${supplement.libelle}</span>
                                                             <span
-                                                                class="badge bg-primary rounded-pill">+${supplement.prix}
+                                                                class="badge bg-primary rounded-pill">+${supplement.prixUnitaire}
                                                                 DT</span>
                                                         </div>
                                                     </label>

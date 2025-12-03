@@ -39,7 +39,8 @@ public class EspaceTravailDAO {
     public List<EspaceTravail> findByType(TypeEspace type) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery<EspaceTravail> q = em.createQuery("SELECT e FROM EspaceTravail e WHERE e.typeEspace = :type", EspaceTravail.class);
+            TypedQuery<EspaceTravail> q = em.createQuery("SELECT e FROM EspaceTravail e WHERE e.typeEspace = :type",
+                    EspaceTravail.class);
             q.setParameter("type", type);
             return q.getResultList();
         } finally {
@@ -62,9 +63,29 @@ public class EspaceTravailDAO {
         EntityManager em = JPAUtil.getEntityManager();
         try {
             em.getTransaction().begin();
+
+            // Check if there are any reservations for this workspace
+            Long count = em.createQuery(
+                    "SELECT COUNT(r) FROM Reservation r WHERE r.espaceTravail.id = :espaceId",
+                    Long.class)
+                    .setParameter("espaceId", id)
+                    .getSingleResult();
+
+            if (count > 0) {
+                throw new RuntimeException(
+                        "Cannot delete workspace: " + count + " reservation(s) exist for this workspace");
+            }
+
             EspaceTravail e = em.find(EspaceTravail.class, id);
-            if (e != null) em.remove(e);
+            if (e != null) {
+                em.remove(e);
+            }
             em.getTransaction().commit();
+        } catch (RuntimeException ex) {
+            if (em.getTransaction().isActive()) {
+                em.getTransaction().rollback();
+            }
+            throw ex;
         } finally {
             em.close();
         }

@@ -22,5 +22,24 @@ public class MyReservationsServlet extends HttpServlet {
         }
         req.getRequestDispatcher("/WEB-INF/views/myReservations.jsp").forward(req, resp);
     }
-    // Add doPost for user's cancel request
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, java.io.IOException {
+        String action = req.getParameter("action");
+
+        if ("cancel".equals(action)) {
+            String reservationId = req.getParameter("reservationId");
+            if (reservationId != null && !reservationId.isEmpty()) {
+                try {
+                    reservationService.annulerReservation(Long.parseLong(reservationId));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // Redirect back to the same page to show updated list
+        resp.sendRedirect(req.getContextPath() + "/myReservations");
+    }
 }

@@ -93,10 +93,11 @@
                                             <c:forEach var="resa" items="${reservations}">
                                                 <tr>
                                                     <td class="text-muted"><strong>#${resa.id}</strong></td>
-                                                    <td>${resa.espaceCoworking.nom}</td>
+                                                    <td>${resa.espaceTravail.nom}</td>
                                                     <td><small>${resa.dateHeureDebut}</small></td>
                                                     <td><small>${resa.dateHeureFin}</small></td>
-                                                    <td><strong class="text-primary">${resa.prixTotal} DT</strong></td>
+                                                    <td><strong class="text-primary">${resa.montantTotal} DT</strong>
+                                                    </td>
                                                     <td>
                                                         <c:choose>
                                                             <c:when test="${resa.statut == 'CONFIRMEE'}">

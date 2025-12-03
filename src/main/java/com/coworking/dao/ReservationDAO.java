@@ -38,7 +38,9 @@ public class ReservationDAO {
     public List<Reservation> findByUtilisateur(Long userId) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery<Reservation> q = em.createQuery("SELECT r FROM Reservation r WHERE r.utilisateur.id = :uid", Reservation.class);
+            TypedQuery<Reservation> q = em.createQuery(
+                    "SELECT r FROM Reservation r JOIN FETCH r.espaceTravail WHERE r.utilisateur.id = :uid",
+                    Reservation.class);
             q.setParameter("uid", userId);
             return q.getResultList();
         } finally {
@@ -62,7 +64,8 @@ public class ReservationDAO {
         try {
             em.getTransaction().begin();
             Reservation r = em.find(Reservation.class, id);
-            if (r != null) em.remove(r);
+            if (r != null)
+                em.remove(r);
             em.getTransaction().commit();
         } finally {
             em.close();
