@@ -80,7 +80,7 @@
                         </div>
                         <div class="d-flex justify-content-between border-bottom pb-3 mb-3">
                             <span class="text-muted">Espace</span>
-                            <span class="fw-bold">${reservation.espaceCoworking.nom}</span>
+                            <span class="fw-bold">${reservation.espaceTravail.nom}</span>
                         </div>
                         <div class="d-flex justify-content-between border-bottom pb-3 mb-3">
                             <span class="text-muted">Date de debut</span>
@@ -96,7 +96,7 @@
                         </div>
                         <div class="d-flex justify-content-between align-items-center pt-2">
                             <span class="text-muted fs-5">Prix total</span>
-                            <span class="fw-bold text-primary fs-3">${reservation.prixTotal} DT</span>
+                            <span class="fw-bold text-primary fs-3">${reservation.montantTotal} DT</span>
                         </div>
                     </div>
                 </div>
@@ -109,11 +109,11 @@
                             Un email de confirmation a ete envoye a votre adresse.
                         </p>
                         <div class="d-flex justify-content-center gap-3 flex-wrap">
-                            <a href="${pageContext.request.contextPath}/myReservations" class="btn btn-primary">
-                                <i class="bi bi-list-check me-2"></i>Voir mes reservations
+                            <a href="${pageContext.request.contextPath}/chooseType" class="btn btn-primary">
+                                <i class="bi bi-arrow-left me-2"></i>Retour aux espaces
                             </a>
-                            <a href="${pageContext.request.contextPath}/chooseType" class="btn btn-outline-primary">
-                                <i class="bi bi-plus-circle me-2"></i>Nouvelle reservation
+                            <a href="${pageContext.request.contextPath}/myReservations" class="btn btn-outline-primary">
+                                <i class="bi bi-list-check me-2"></i>Voir mes reservations
                             </a>
                         </div>
                     </div>
