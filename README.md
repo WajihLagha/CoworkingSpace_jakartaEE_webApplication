@@ -84,24 +84,10 @@ The application follows the classic **MVC (Model-View-Controller)** design patte
 
 ---
 
-## 📸 Screenshots
-
-*(Placeholders for future screenshots)*
-
-| Login Page | Workspace Search |
-| :---: | :---: |
-| ![Login Preview](https://via.placeholder.com/400x200?text=Login+Screen) | ![Search Preview](https://via.placeholder.com/400x200?text=Workspace+Search) |
-
-| Reservation Dashboard | Admin Panel |
-| :---: | :---: |
-| ![Dashboard Preview](https://via.placeholder.com/400x200?text=Reservation+Dashboard) | ![Admin Preview](https://via.placeholder.com/400x200?text=Admin+Panel) |
-
----
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please fork the repository and create a pull request for any feature enhancements or bug fixes.
 
 ---
 
-**University Project** - *Created by [Your Name]*
+**University Project** - *Created by [Wajih_Lagha]*
