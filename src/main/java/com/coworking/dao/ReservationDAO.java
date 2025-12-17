@@ -71,4 +71,23 @@ public class ReservationDAO {
             em.close();
         }
     }
+
+    public long count() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT COUNT(r) FROM Reservation r", Long.class).getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long countActive() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT COUNT(r) FROM Reservation r WHERE r.statut = 'CONFIRMEE'", Long.class)
+                    .getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

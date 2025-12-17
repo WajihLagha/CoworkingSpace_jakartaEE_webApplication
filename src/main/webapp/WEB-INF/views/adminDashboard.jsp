@@ -127,19 +127,19 @@
                             <h2 class="h4 mb-4">Statistiques Rapides</h2>
                             <div class="row g-4 text-center">
                                 <div class="col-md-3">
-                                    <div class="display-4 fw-bold text-primary">-</div>
+                                    <div class="display-4 fw-bold text-primary">${totalUsers}</div>
                                     <div class="text-muted mt-2">Total Utilisateurs</div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="display-4 fw-bold text-primary">-</div>
+                                    <div class="display-4 fw-bold text-primary">${totalWorkspaces}</div>
                                     <div class="text-muted mt-2">Total Espaces</div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="display-4 fw-bold text-primary">-</div>
+                                    <div class="display-4 fw-bold text-primary">${activeReservations}</div>
                                     <div class="text-muted mt-2">Réservations Actives</div>
                                 </div>
                                 <div class="col-md-3">
-                                    <div class="display-4 fw-bold text-primary">-</div>
+                                    <div class="display-4 fw-bold text-primary">${totalSupplements}</div>
                                     <div class="text-muted mt-2">Suppléments Disponibles</div>
                                 </div>
                             </div>

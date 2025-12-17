@@ -50,8 +50,18 @@ public class SupplementDAO {
         try {
             em.getTransaction().begin();
             Supplement s = em.find(Supplement.class, id);
-            if (s != null) em.remove(s);
+            if (s != null)
+                em.remove(s);
             em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long count() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT COUNT(s) FROM Supplement s", Long.class).getSingleResult();
         } finally {
             em.close();
         }

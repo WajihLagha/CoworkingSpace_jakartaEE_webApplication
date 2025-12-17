@@ -90,4 +90,13 @@ public class EspaceTravailDAO {
             em.close();
         }
     }
+
+    public long count() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT COUNT(e) FROM EspaceTravail e", Long.class).getSingleResult();
+        } finally {
+            em.close();
+        }
+    }
 }

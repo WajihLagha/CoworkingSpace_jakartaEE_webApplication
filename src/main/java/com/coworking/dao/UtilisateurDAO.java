@@ -29,10 +29,11 @@ public class UtilisateurDAO {
     public Utilisateur findByEmail(String email) {
         EntityManager em = JPAUtil.getEntityManager();
         try {
-            TypedQuery<Utilisateur> q = em.createQuery("SELECT u FROM Utilisateur u WHERE u.email = :email", Utilisateur.class);
+            TypedQuery<Utilisateur> q = em.createQuery("SELECT u FROM Utilisateur u WHERE u.email = :email",
+                    Utilisateur.class);
             q.setParameter("email", email);
             return q.getSingleResult();
-        } catch(Exception e) {
+        } catch (Exception e) {
             return null;
         } finally {
             em.close();
@@ -64,8 +65,18 @@ public class UtilisateurDAO {
         try {
             em.getTransaction().begin();
             Utilisateur u = em.find(Utilisateur.class, id);
-            if (u != null) em.remove(u);
+            if (u != null)
+                em.remove(u);
             em.getTransaction().commit();
+        } finally {
+            em.close();
+        }
+    }
+
+    public long count() {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            return em.createQuery("SELECT COUNT(u) FROM Utilisateur u", Long.class).getSingleResult();
         } finally {
             em.close();
         }
