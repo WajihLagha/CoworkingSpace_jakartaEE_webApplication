@@ -1,33 +1,107 @@
-# CoworkingSpace_jakartaEE_webApplication
-A web app built with Jakarta EE (JPA, Servlets, JSP/JSTL) for managing coworking space bookings. Users can register, log in, and reserve desks or rooms, while admins manage resources and reservations via an intuitive interface. Prevents double-bookings and supports role-based access.
+# 🏢 Coworking Space Management System
 
-Features
-User and admin flows with login/registration
+![Jakarta EE](https://img.shields.io/badge/Jakarta%20EE-Platform-black?style=for-the-badge&logo=jakartaee)
+![Java](https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white)
+![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white)
+![Bootstrap](https://img.shields.io/badge/bootstrap-%238511FA.svg?style=for-the-badge&logo=bootstrap&logoColor=white)
 
-Search and book desks/rooms by date, capacity, equipment
+A robust, enterprise-grade web application built with **Jakarta EE** for managing modern coworking spaces. This solution streamlines the booking process for users while providing administrators with powerful tools to manage resources, users, and reservations efficiently.
 
-Reservation management (view/cancel)
+---
 
-Space and equipment management (admin)
+## 🌟 Key Features
 
-MVC architecture for maintainability
+### 👤 For Members
+*   **Seamless Registration & Authentication**: Secure sign-up and login process.
+*   **Smart Workspace Search**: detailed filtering by capacity, equipment (Projectors, Whiteboards, etc.), and type (Meeting Room, Shared Desk, Private Office).
+*   **Real-time Booking**: Instant reservation system with conflict detection to prevent double-bookings.
+*   **My Reservations**: Dashboard to view, manage, and cancel upcoming bookings.
+*   **Profile Management**: Update personal details and preferences.
 
-Technologies
-Jakarta EE
+### 🛡️ For Administrators
+*   **Admin Dashboard**: Comprehensive overview of system stats and recent activities.
+*   **Resource Management (CRUD)**:
+    *   **Workspaces**: Add, edit, or remove desks and rooms.
+    *   **Equipment**: Manage available amenities and assign them to specific spaces.
+    *   **Users**: Manage member accounts and roles.
+*   **Reservation Oversight**: View all bookings, filter by date/user, and handle cancellations if necessary.
 
-JPA (Java Persistence API)
+---
 
-Servlets
+## 🛠️ Technology Stack
 
-JSP/JSTL
+| Layer | Technology |
+| :--- | :--- |
+| **Backend** | Java (Jakarta EE), Servlets, JSP, JSTL |
+| **Persistence** | JPA (Java Persistence API), Hibernate |
+| **Database** | MySQL |
+| **Frontend** | HTML5, CSS3, Bootstrap 5, JavaScript |
+| **Build Tool** | Maven / Gradle (Optional) |
+| **Server** | Apache Tomcat 9+ / Payara |
 
-MySQL
+---
 
-How to Run
-Import the project in Eclipse.
+## 🏛️ Architecture
 
-Configure database credentials in persistence.xml.
+The application follows the classic **MVC (Model-View-Controller)** design pattern to ensure separation of concerns and maintainability.
 
-Deploy to a Jakarta EE-compatible server (Tomcat/Payara).
+*   **Model**: JPA Entities (`User`, `Workspace`, `Reservation`) representing the data.
+*   **View**: JSPs (`.jsp`) responsible for the user interface and presentation logic.
+*   **Controller**: Java Servlets handling HTTP requests, business logic processing, and navigation.
 
-Access via browser to start booking!
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+*   Java Development Kit (JDK) 8 or higher
+*   Apache Tomcat Server (v9.0 or higher)
+*   MySQL Server
+*   Eclipse IDE for Enterprise Java Developers
+
+### Installation
+
+1.  **Clone the Repository**
+    ```bash
+    git clone https://github.com/yourusername/CoworkingSpace.git
+    ```
+
+2.  **Database Configuration**
+    *   Create a MySQL database named `coworking_db`.
+    *   Update the `persistence.xml` file located in `src/main/resources/META-INF/` with your database credentials:
+        ```xml
+        <property name="javax.persistence.jdbc.user" value="your_username" />
+        <property name="javax.persistence.jdbc.password" value="your_password" />
+        ```
+
+3.  **Run in Eclipse**
+    *   Import the project as a **Maven Project** or **Dynamic Web Project**.
+    *   Right-click on the project -> `Run As` -> `Run on Server`.
+    *   Select your configured Tomcat server and click `Finish`.
+
+4.  **Access the App**
+    *   Open your browser and navigate to: `http://localhost:8080/CoworkingSpace`
+
+---
+
+## 📸 Screenshots
+
+*(Placeholders for future screenshots)*
+
+| Login Page | Workspace Search |
+| :---: | :---: |
+| ![Login Preview](https://via.placeholder.com/400x200?text=Login+Screen) | ![Search Preview](https://via.placeholder.com/400x200?text=Workspace+Search) |
+
+| Reservation Dashboard | Admin Panel |
+| :---: | :---: |
+| ![Dashboard Preview](https://via.placeholder.com/400x200?text=Reservation+Dashboard) | ![Admin Preview](https://via.placeholder.com/400x200?text=Admin+Panel) |
+
+---
+
+## 🤝 Contributing
+
+Contributions are welcome! Please fork the repository and create a pull request for any feature enhancements or bug fixes.
+
+---
+
+**University Project** - *Created by [Your Name]*
