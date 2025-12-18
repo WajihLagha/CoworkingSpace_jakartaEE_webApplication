@@ -99,12 +99,41 @@
                                 <c:forEach var="espace" items="${espaces}">
                                     <div class="col-md-6 col-lg-4">
                                         <div class="card h-100 border-0 shadow hover-lift">
-                                            <img src="${pageContext.request.contextPath}/images/${espace.typeEspace == 'BUREAU' ? 'bureau' : (espace.typeEspace == 'SALLE_REUNION' ? 'reunion' : 'formation')}.jpg"
-                                                alt="${espace.nom}" class="card-img-top"
-                                                style="height: 200px; object-fit: cover;" />
+                                            <c:choose>
+                                                <c:when test="${not empty espace.image}">
+                                                    <img src="${espace.image}" alt="${espace.nom}" class="card-img-top"
+                                                        style="height: 200px; object-fit: cover;" />
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <img src="${pageContext.request.contextPath}/images/${espace.typeEspace == 'BUREAU' ? 'bureau.png' : (espace.typeEspace == 'SALLE_REUNION' ? 'meeting.png' : 'formation.png')}"
+                                                        alt="${espace.nom}" class="card-img-top"
+                                                        style="height: 200px; object-fit: cover;" />
+                                                </c:otherwise>
+                                            </c:choose>
 
                                             <div class="card-body d-flex flex-column">
                                                 <h5 class="card-title fw-bold">${espace.nom}</h5>
+
+                                                <div class="mb-2 text-warning small">
+                                                    <c:forEach begin="1" end="5" var="i">
+                                                        <c:choose>
+                                                            <c:when test="${espace.averageRating >= i}">
+                                                                <i class="bi bi-star-fill"></i>
+                                                            </c:when>
+                                                            <c:when test="${espace.averageRating >= i - 0.5}">
+                                                                <i class="bi bi-star-half"></i>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <i class="bi bi-star"></i>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                    <span class="text-muted ms-1 small">
+                                                        (
+                                                        <fmt:formatNumber value="${espace.averageRating}"
+                                                            maxFractionDigits="1" />)
+                                                    </span>
+                                                </div>
 
                                                 <div class="d-flex flex-wrap gap-2 mb-3">
                                                     <span class="badge bg-light text-dark">

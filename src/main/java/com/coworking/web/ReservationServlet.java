@@ -27,11 +27,11 @@ public class ReservationServlet extends HttpServlet {
                 Long espaceId = Long.parseLong(espaceIdStr);
                 EspaceTravail espace = espaceDAO.findById(espaceId);
                 req.setAttribute("espace", espace);
-                
+
                 // Also fetch supplements to display in the form
                 List<Supplement> supplements = supplementDAO.findAll();
                 req.setAttribute("supplements", supplements);
-                
+
                 // Set base prices for display
                 if (espace != null) {
                     req.setAttribute("prixBase", espace.getPrixHoraire());
@@ -60,22 +60,23 @@ public class ReservationServlet extends HttpServlet {
             // 2. Get Form Data
             String espaceIdStr = req.getParameter("espaceId");
             String dateDebutStr = req.getParameter("dateDebut");
-            String dateFinStr = req.getParameter("dateFin");
+            String durationStr = req.getParameter("duration");
             String[] supplementIds = req.getParameterValues("supplementIds");
 
-            if (espaceIdStr == null || dateDebutStr == null || dateFinStr == null) {
+            if (espaceIdStr == null || dateDebutStr == null || durationStr == null) {
                 throw new IllegalArgumentException("Données manquantes");
             }
 
             Long espaceId = Long.parseLong(espaceIdStr);
+            int duration = Integer.parseInt(durationStr);
 
-            // 3. Parse Dates (datetime-local format: yyyy-MM-ddTHH:mm)
-            LocalDateTime dateDebut = LocalDateTime.parse(dateDebutStr);
-            LocalDateTime dateFin = LocalDateTime.parse(dateFinStr);
-
-            if (dateFin.isBefore(dateDebut)) {
-                throw new IllegalArgumentException("La date de fin doit être après la date de début");
+            if (duration < 1) {
+                throw new IllegalArgumentException("La durée doit être d'au moins 1 heure");
             }
+
+            // 3. Parse Dates and Calculate End Date
+            LocalDateTime dateDebut = LocalDateTime.parse(dateDebutStr);
+            LocalDateTime dateFin = dateDebut.plusHours(duration);
 
             // 4. Fetch Entities
             EspaceTravail espace = espaceDAO.findById(espaceId);
@@ -104,11 +105,14 @@ public class ReservationServlet extends HttpServlet {
             req.setAttribute("reservation", reservation);
             req.getRequestDispatcher("/WEB-INF/views/reservationConfirm.jsp").forward(req, resp);
 
+        } catch (java.time.format.DateTimeParseException e) {
+            req.setAttribute("error", "Format de date invalide. Veuillez utiliser le sélecteur de date.");
+            doGet(req, resp);
         } catch (Exception e) {
             e.printStackTrace();
             req.setAttribute("error", "Erreur lors de la réservation : " + e.getMessage());
             // Re-load data for the form
-            doGet(req, resp); 
+            doGet(req, resp);
         }
     }
 }

@@ -8,43 +8,40 @@ import java.util.List;
 @Entity
 @Table(name = "Reservation")
 public class Reservation {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
-    @Column(nullable = false)
-    private LocalDateTime dateHeureDebut;
+	@Column(nullable = false)
+	private LocalDateTime dateHeureDebut;
 
-    @Column(nullable = false)
-    private LocalDateTime dateHeureFin;
+	@Column(nullable = false)
+	private LocalDateTime dateHeureFin;
 
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private StatutReservation statut;
+	@Enumerated(EnumType.STRING)
+	@Column(nullable = false)
+	private StatutReservation statut;
 
-    @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal montantTotal;
+	@Column(nullable = false, precision = 10, scale = 2)
+	private BigDecimal montantTotal;
 
-    @Column(nullable = false)
-    private LocalDateTime dateCreation;
+	@Column(nullable = false)
+	private LocalDateTime dateCreation;
 
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id", nullable = false)
-    private Utilisateur utilisateur;
+	@ManyToOne
+	@JoinColumn(name = "utilisateur_id", nullable = false)
+	private Utilisateur utilisateur;
 
-    @ManyToOne
-    @JoinColumn(name = "espaceTravail_id", nullable = false)
-    private EspaceTravail espaceTravail;
+	@ManyToOne
+	@JoinColumn(name = "espaceTravail_id", nullable = false)
+	private EspaceTravail espaceTravail;
 
-    @ManyToMany
-    @JoinTable(
-        name = "Reservation_Supplement",
-        joinColumns = @JoinColumn(name = "reservation_id"),
-        inverseJoinColumns = @JoinColumn(name = "supplement_id")
-    )
-    private List<Supplement> supplements;
+	@ManyToMany
+	@JoinTable(name = "Reservation_Supplement", joinColumns = @JoinColumn(name = "reservation_id"), inverseJoinColumns = @JoinColumn(name = "supplement_id"))
+	private List<Supplement> supplements;
 
-    public Reservation() {}
+	public Reservation() {
+	}
 
 	public Long getId() {
 		return id;
@@ -117,6 +114,19 @@ public class Reservation {
 	public void setSupplements(List<Supplement> supplements) {
 		this.supplements = supplements;
 	}
-    
+
+	public String getFormattedDateHeureDebut() {
+		if (dateHeureDebut != null) {
+			return java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(dateHeureDebut);
+		}
+		return "";
+	}
+
+	public String getFormattedDateHeureFin() {
+		if (dateHeureFin != null) {
+			return java.time.format.DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm").format(dateHeureFin);
+		}
+		return "";
+	}
 
 }

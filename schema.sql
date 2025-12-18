@@ -18,6 +18,7 @@ CREATE TABLE `espacetravail` (
   `capacite` int NOT NULL,
   `prixHoraire` decimal(10,2) NOT NULL,
   `description` varchar(255) DEFAULT NULL,
+  `image` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -106,5 +107,27 @@ CREATE TABLE `utilisateur` (
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+--
+-- Table structure for table `review`
+--
+
+DROP TABLE IF EXISTS `review`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `review` (
+  `id` bigint NOT NULL AUTO_INCREMENT,
+  `note` int NOT NULL,
+  `commentaire` text,
+  `dateReview` datetime NOT NULL,
+  `utilisateur_id` bigint NOT NULL,
+  `espaceTravail_id` bigint NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `utilisateur_id` (`utilisateur_id`),
+  KEY `espaceTravail_id` (`espaceTravail_id`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`utilisateur_id`) REFERENCES `utilisateur` (`id`),
+  CONSTRAINT `review_ibfk_2` FOREIGN KEY (`espaceTravail_id`) REFERENCES `espacetravail` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 -- Dump completed on 2025-12-17 21:52:30

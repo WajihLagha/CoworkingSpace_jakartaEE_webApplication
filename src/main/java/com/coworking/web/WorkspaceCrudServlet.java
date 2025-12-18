@@ -32,12 +32,14 @@ public class WorkspaceCrudServlet extends HttpServlet {
             int capacite = Integer.parseInt(req.getParameter("capacite"));
             java.math.BigDecimal prixHoraire = new java.math.BigDecimal(req.getParameter("prixHoraire"));
             String description = req.getParameter("description");
+            String image = req.getParameter("image");
             EspaceTravail espace = new EspaceTravail();
             espace.setNom(nom);
             espace.setTypeEspace(type);
             espace.setCapacite(capacite);
             espace.setPrixHoraire(prixHoraire);
             espace.setDescription(description);
+            espace.setImage(image);
             espaceService.creerEspace(espace);
         }
 
@@ -51,6 +53,7 @@ public class WorkspaceCrudServlet extends HttpServlet {
                 espace.setCapacite(Integer.parseInt(req.getParameter("capacite")));
                 espace.setPrixHoraire(new java.math.BigDecimal(req.getParameter("prixHoraire")));
                 espace.setDescription(req.getParameter("description"));
+                espace.setImage(req.getParameter("image"));
                 espaceService.modifierEspace(espace);
             }
         }

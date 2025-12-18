@@ -98,6 +98,11 @@
                                     step="0.01" min="0" placeholder="give price" required />
                             </div>
                             <div class="col-12">
+                                <label for="image" class="form-label">URL de l'image</label>
+                                <input type="text" id="image" name="image" class="form-control"
+                                    placeholder="https://example.com/image.jpg" />
+                            </div>
+                            <div class="col-12">
                                 <label for="description" class="form-label">Description</label>
                                 <textarea id="description" name="description" class="form-control" rows="3"
                                     placeholder="give description"></textarea>
@@ -123,6 +128,7 @@
                             <thead class="table-light">
                                 <tr>
                                     <th>ID</th>
+                                    <th>Image</th>
                                     <th>Nom</th>
                                     <th>Type</th>
                                     <th>Capacite</th>
@@ -134,6 +140,18 @@
                                 <c:forEach var="workspace" items="${workspaces}">
                                     <tr>
                                         <td class="text-muted">#${workspace.id}</td>
+                                        <td>
+                                            <c:if test="${not empty workspace.image}">
+                                                <img src="${workspace.image}" alt="${workspace.nom}" class="rounded"
+                                                    style="width: 50px; height: 50px; object-fit: cover;">
+                                            </c:if>
+                                            <c:if test="${empty workspace.image}">
+                                                <div class="rounded bg-light d-flex align-items-center justify-content-center text-muted"
+                                                    style="width: 50px; height: 50px;">
+                                                    <i class="bi bi-image"></i>
+                                                </div>
+                                            </c:if>
+                                        </td>
                                         <td><strong>${workspace.nom}</strong></td>
                                         <td>
                                             <c:choose>

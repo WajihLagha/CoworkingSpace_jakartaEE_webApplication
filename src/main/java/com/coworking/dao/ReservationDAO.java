@@ -90,4 +90,20 @@ public class ReservationDAO {
             em.close();
         }
     }
+
+    public com.coworking.model.TypeEspace findFavoriteWorkspaceType(Long userId) {
+        EntityManager em = JPAUtil.getEntityManager();
+        try {
+            List<com.coworking.model.TypeEspace> results = em.createQuery(
+                    "SELECT r.espaceTravail.typeEspace FROM Reservation r WHERE r.utilisateur.id = :uid GROUP BY r.espaceTravail.typeEspace ORDER BY COUNT(r) DESC",
+                    com.coworking.model.TypeEspace.class)
+                    .setParameter("uid", userId)
+                    .setMaxResults(1)
+                    .getResultList();
+
+            return results.isEmpty() ? null : results.get(0);
+        } finally {
+            em.close();
+        }
+    }
 }

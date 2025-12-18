@@ -56,8 +56,21 @@ public class ReservationService {
             prixBase = prixBase * 0.8;
         }
 
-        double prixSupp = (resa.getSupplements() == null) ? 0
-                : resa.getSupplements().stream().mapToDouble(s -> s.getPrixUnitaire().doubleValue()).sum();
+        double prixSupp = 0;
+        if (resa.getSupplements() != null && !resa.getSupplements().isEmpty()) {
+            double totalSupplements = resa.getSupplements().stream().mapToDouble(s -> s.getPrixUnitaire().doubleValue())
+                    .sum();
+
+            // Smart Bundle Logic: Meeting Pack (SALLE_REUNION + 3 specific items)
+            // We check if the reservation is for a meeting room and contains the bundle
+            // items
+            if (resa.getEspaceTravail().getTypeEspace() == TypeEspace.SALLE_REUNION
+                    && isMeetingBundle(resa.getSupplements())) {
+                totalSupplements = totalSupplements * 0.90; // 10% discount
+            }
+
+            prixSupp = totalSupplements;
+        }
         resa.setMontantTotal(java.math.BigDecimal.valueOf(prixBase + prixSupp));
 
         reservationDAO.save(resa);
@@ -78,6 +91,28 @@ public class ReservationService {
 
     public List<Reservation> findAll() {
         return reservationDAO.findAll();
+    }
+
+    // Helper to check if the list constitutes a "Meeting Pack"
+    private boolean isMeetingBundle(List<Supplement> supplements) {
+        // We look for keywords since we don't have hardcoded IDs
+        boolean hasProjector = false;
+        boolean hasCoffee = false;
+        boolean hasNotepad = false;
+
+        for (Supplement s : supplements) {
+            if (s.getLibelle() != null) {
+                String name = s.getLibelle().toLowerCase();
+                if (name.contains("projecteur") || name.contains("vidéo") || name.contains("ecran"))
+                    hasProjector = true;
+                if (name.contains("café") || name.contains("coffee") || name.contains("boisson"))
+                    hasCoffee = true;
+                if (name.contains("bloc") || name.contains("note") || name.contains("papier"))
+                    hasNotepad = true;
+            }
+        }
+
+        return hasProjector && hasCoffee && hasNotepad;
     }
 
 }

@@ -6,6 +6,7 @@ import jakarta.persistence.Persistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+// Utility class for managing the EntityManagerFactory
 public class JPAUtil {
     private static final Logger LOGGER = Logger.getLogger(JPAUtil.class.getName());
     private static EntityManagerFactory emf;

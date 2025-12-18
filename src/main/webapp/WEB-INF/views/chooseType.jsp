@@ -45,7 +45,7 @@
                 <!-- Bureau Card -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow hover-lift">
-                        <img src="${pageContext.request.contextPath}/images/bureau.jpg" class="card-img-top"
+                        <img src="${pageContext.request.contextPath}/images/bureau.png" class="card-img-top"
                             alt="Bureau Individuel" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title fw-bold text-center mb-3">Bureau Individuel</h3>
@@ -59,7 +59,7 @@
                                     <li><i class="bi bi-check-circle-fill text-success me-2"></i>Wi-Fi haut debit</li>
                                 </ul>
                             </div>
-                            <form action="${pageContext.request.contextPath}/espaces" method="get" class="mt-auto">
+                            <form action="${pageContext.request.contextPath}/workspaces" method="get" class="mt-auto">
                                 <input type="hidden" name="type" value="BUREAU" />
                                 <button type="submit" class="btn btn-primary w-100">
                                     <i class="bi bi-arrow-right-circle me-2"></i>Voir les bureaux
@@ -72,7 +72,7 @@
                 <!-- Salle de Reunion Card -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow hover-lift">
-                        <img src="${pageContext.request.contextPath}/images/reunion.jpg" class="card-img-top"
+                        <img src="${pageContext.request.contextPath}/images/meeting.png" class="card-img-top"
                             alt="Salle de Reunion" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title fw-bold text-center mb-3">Salle de Reunion</h3>
@@ -87,7 +87,7 @@
                                     <li><i class="bi bi-check-circle-fill text-success me-2"></i>Videoconference</li>
                                 </ul>
                             </div>
-                            <form action="${pageContext.request.contextPath}/espaces" method="get" class="mt-auto">
+                            <form action="${pageContext.request.contextPath}/workspaces" method="get" class="mt-auto">
                                 <input type="hidden" name="type" value="SALLE_REUNION" />
                                 <button type="submit" class="btn btn-success w-100">
                                     <i class="bi bi-arrow-right-circle me-2"></i>Voir les salles
@@ -100,7 +100,7 @@
                 <!-- Salle de Formation Card -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card h-100 border-0 shadow hover-lift">
-                        <img src="${pageContext.request.contextPath}/images/formation.jpg" class="card-img-top"
+                        <img src="${pageContext.request.contextPath}/images/formation.png" class="card-img-top"
                             alt="Salle de Formation" style="height: 200px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title fw-bold text-center mb-3">Salle de Formation</h3>
@@ -115,7 +115,7 @@
                                     </li>
                                 </ul>
                             </div>
-                            <form action="${pageContext.request.contextPath}/espaces" method="get" class="mt-auto">
+                            <form action="${pageContext.request.contextPath}/workspaces" method="get" class="mt-auto">
                                 <input type="hidden" name="type" value="SALLE_FORMATION" />
                                 <button type="submit" class="btn btn-info w-100 text-white">
                                     <i class="bi bi-arrow-right-circle me-2"></i>Voir les espaces

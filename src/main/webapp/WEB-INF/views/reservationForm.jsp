@@ -139,15 +139,69 @@
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="dateFin" class="form-label">Date et heure de fin <span
+                                        <label for="duration" class="form-label">Duree (heures) <span
                                                 class="text-danger">*</span></label>
-                                        <input type="datetime-local" id="dateFin" name="dateFin" class="form-control"
-                                            required />
-                                        <div class="form-text">Selectionnez la date et l'heure de fin</div>
+                                        <input type="number" id="duration" name="duration" class="form-control" min="1"
+                                            value="1" required />
+                                        <div class="form-text">Indiquez la duree souhaitee en heures</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+
+                        <c:if test="${espace.typeEspace == 'SALLE_REUNION' && not empty supplements}">
+                            <!-- Smart Bundle Card -->
+                            <div class="card border-0 shadow-sm mb-4 position-relative overflow-hidden"
+                                style="background: linear-gradient(135deg, #fdfbf7 0%, #fff 100%); border-left: 5px solid #ffc107;">
+                                <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                                    <i class="bi bi-stars text-warning" style="font-size: 5rem;"></i>
+                                </div>
+                                <div class="card-body p-4 position-relative">
+                                    <div
+                                        class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="rounded-circle p-3 d-flex align-items-center justify-content-center shadow-sm"
+                                                style="background: linear-gradient(45deg, #ffc107, #ffdb4d); width: 64px; height: 64px;">
+                                                <i class="bi bi-gift-fill text-dark fs-3"></i>
+                                            </div>
+                                            <div class="ms-3">
+                                                <div class="badge bg-warning text-dark mb-1 px-3 py-1 rounded-pill">
+                                                    Offre Spéciale</div>
+                                                <h4 class="fw-bold mb-1" style="color: #2c3e50;">Pack Réunion Tout-en-un
+                                                </h4>
+                                                <p class="text-muted mb-0">Boostez votre productivité avec nos
+                                                    essentiels.</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="bg-white p-3 rounded-3 shadow-sm d-none d-lg-block border">
+                                            <ul class="list-unstyled mb-0 small text-muted">
+                                                <li class="mb-1"><i
+                                                        class="bi bi-check-circle-fill text-success me-2"></i>Vidéoprojecteur
+                                                    HD</li>
+                                                <li class="mb-1"><i
+                                                        class="bi bi-check-circle-fill text-success me-2"></i>Service
+                                                    Café Illimité</li>
+                                                <li><i class="bi bi-check-circle-fill text-success me-2"></i>Bloc-notes
+                                                    & Stylos</li>
+                                            </ul>
+                                        </div>
+
+                                        <div class="text-center text-md-end">
+                                            <div class="mb-2">
+                                                <span class="fs-5 fw-bold text-success">-10%</span>
+                                                <span class="text-muted small">sur les suppléments</span>
+                                            </div>
+                                            <button type="button"
+                                                class="btn btn-dark px-4 py-2 shadow-sm rounded-pill hover-scale"
+                                                onclick="activateMeetingBundle()" id="btn-activate-bundle">
+                                                <i class="bi bi-magic me-2"></i>Activer le Pack
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:if>
 
                         <c:if test="${not empty supplements}">
                             <div class="card border-0 shadow-sm mb-4">
@@ -203,6 +257,43 @@
 
             <!-- Custom JS -->
             <script src="${pageContext.request.contextPath}/js/app.js"></script>
+            <script>
+                function activateMeetingBundle() {
+                    const supplements = document.querySelectorAll('input[name="supplements"]');
+                    let count = 0;
+
+                    supplements.forEach(checkbox => {
+                        const label = document.querySelector(`label[for="${checkbox.id}"]`);
+                        if (label) {
+                            const text = label.textContent.toLowerCase();
+                            // Logic matches ReservationService.isMeetingBundle
+                            if (text.includes('projecteur') || text.includes('vidéo') || text.includes('ecran') ||
+                                text.includes('café') || text.includes('coffee') || text.includes('boisson') ||
+                                text.includes('bloc') || text.includes('note') || text.includes('papier')) {
+                                checkbox.checked = true;
+                                count++;
+                                // Trigger change event for price calculator if it exists
+                                const event = new Event('change');
+                                checkbox.dispatchEvent(event);
+                            }
+                        }
+                    });
+
+                    if (count > 0) {
+                        if (window.showNotification) {
+                            showNotification('Pack Réunion activé ! Une réduction de 10% sera appliquée sur ces suppléments.', 'success');
+                        } else {
+                            alert('Pack Réunion activé ! Une réduction de 10% sera appliquée sur ces suppléments.');
+                        }
+                    } else {
+                        if (window.showNotification) {
+                            showNotification('Aucun supplément correspondant au pack n\'a été trouvé.', 'warning');
+                        } else {
+                            alert('Aucun supplément correspondant au pack n\'a été trouvé.');
+                        }
+                    }
+                }
+            </script>
         </body>
 
         </html>

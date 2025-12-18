@@ -130,7 +130,58 @@
                     <c:otherwise>
                         <div class="text-center mb-5">
                             <h1 class="display-5 fw-bold">Bienvenue ${sessionScope.utilisateur.nom} !</h1>
-                            <p class="text-muted fs-5">Trouvez l espace de travail parfait pour vous</p>
+                            <c:choose>
+                                <c:when test="${not empty recommendedSpace}">
+                                    <div class="row justify-content-center mt-5">
+                                        <div class="col-md-8 col-lg-6">
+                                            <div
+                                                class="card border-0 shadow-lg hover-lift position-relative overflow-hidden">
+                                                <div class="position-absolute top-0 start-0 w-100 bg-primary text-white text-center py-1 fw-bold"
+                                                    style="font-size: 0.8rem; z-index: 10;">
+                                                    <i class="bi bi-star-fill me-1"></i> RECOMMANDE POUR VOUS
+                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${not empty recommendedSpace.image}">
+                                                        <img src="${recommendedSpace.image}" class="card-img-top mt-4"
+                                                            alt="${recommendedSpace.nom}"
+                                                            style="height: 250px; object-fit: cover;">
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <img src="${pageContext.request.contextPath}/images/${recommendedSpace.typeEspace == 'BUREAU' ? 'bureau.png' : (recommendedSpace.typeEspace == 'SALLE_REUNION' ? 'meeting.png' : 'formation.png')}"
+                                                            class="card-img-top mt-4" alt="${recommendedSpace.nom}"
+                                                            style="height: 250px; object-fit: cover;">
+                                                    </c:otherwise>
+                                                </c:choose>
+                                                <div class="card-body text-center p-4">
+                                                    <h3 class="card-title fw-bold mb-2">${recommendedSpace.nom}</h3>
+                                                    <p class="text-muted mb-3">${recommendedSpace.description}</p>
+                                                    <div
+                                                        class="d-flex justify-content-center align-items-center gap-3 mb-4">
+                                                        <span class="badge bg-light text-dark border"><i
+                                                                class="bi bi-people me-1"></i>${recommendedSpace.capacite}
+                                                            pers.</span>
+                                                        <span
+                                                            class="badge bg-primary-subtle text-primary border border-primary"><i
+                                                                class="bi bi-tag me-1"></i>${recommendedSpace.prixHoraire}
+                                                            DT/h</span>
+                                                    </div>
+                                                    <a href="${pageContext.request.contextPath}/reservation?espaceId=${recommendedSpace.id}"
+                                                        class="btn btn-primary btn-lg w-100 shadow-sm">
+                                                        <i class="bi bi-calendar-check me-2"></i>Reserver cet espace
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:when test="${isNewUser}">
+                                    <p class="text-muted fs-5">Nouveau ici ? Lancez-vous en réservant votre premier
+                                        espace !</p>
+                                </c:when>
+                                <c:otherwise>
+                                    <p class="text-muted fs-5">Trouvez l'espace de travail parfait pour vous</p>
+                                </c:otherwise>
+                            </c:choose>
                         </div>
                         <div class="row g-4 justify-content-center">
                             <div class="col-md-6 col-lg-5">
