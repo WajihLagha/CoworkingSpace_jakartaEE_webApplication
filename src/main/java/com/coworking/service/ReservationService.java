@@ -67,6 +67,9 @@ public class ReservationService {
             if (resa.getEspaceTravail().getTypeEspace() == TypeEspace.SALLE_REUNION
                     && isMeetingBundle(resa.getSupplements())) {
                 totalSupplements = totalSupplements * 0.90; // 10% discount
+            } else if (resa.getEspaceTravail().getTypeEspace() == TypeEspace.SALLE_FORMATION
+                    && isTrainingBundle(resa.getSupplements())) {
+                totalSupplements = totalSupplements * 0.85; // 15% discount for Training Pack
             }
 
             prixSupp = totalSupplements;
@@ -115,4 +118,20 @@ public class ReservationService {
         return hasProjector && hasCoffee && hasNotepad;
     }
 
+    private boolean isTrainingBundle(List<Supplement> supplements) {
+        boolean hasProjector = false;
+        boolean hasWhiteboard = false;
+        boolean hasSnacks = false;
+
+        for (Supplement s : supplements) {
+            String name = s.getLibelle().toLowerCase();
+            if (name.contains("projecteur") || name.contains("vidéo"))
+                hasProjector = true;
+            if (name.contains("tableau") || name.contains("whiteboard"))
+                hasWhiteboard = true;
+            if (name.contains("snack") || name.contains("collation") || name.contains("pause"))
+                hasSnacks = true;
+        }
+        return hasProjector && hasWhiteboard && hasSnacks;
+    }
 }

@@ -201,47 +201,145 @@
                                     </div>
                                 </div>
                             </div>
-                        </c:if>
+                </div>
+                </c:if>
 
-                        <c:if test="${not empty supplements}">
-                            <div class="card border-0 shadow-sm mb-4">
-                                <div class="card-header bg-white py-3">
-                                    <h5 class="mb-0 fw-bold"><i class="bi bi-plus-circle me-2"></i>Supplements
-                                        optionnels
-                                    </h5>
-                                </div>
-                                <div class="card-body">
-                                    <div class="row g-3">
-                                        <c:forEach var="supplement" items="${supplements}">
-                                            <div class="col-md-6">
-                                                <div class="form-check p-3 border rounded bg-light h-100">
-                                                    <input class="form-check-input" type="checkbox" name="supplements"
-                                                        value="${supplement.id}" id="supp_${supplement.id}">
-                                                    <label class="form-check-label w-100" for="supp_${supplement.id}">
-                                                        <div class="d-flex justify-content-between align-items-center">
-                                                            <span class="fw-bold">${supplement.libelle}</span>
-                                                            <span
-                                                                class="badge bg-primary rounded-pill">+${supplement.prixUnitaire}
-                                                                DT</span>
-                                                        </div>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </c:forEach>
+                <c:if test="${espace.typeEspace == 'SALLE_FORMATION' && not empty supplements}">
+                    <!-- Training Bundle Card -->
+                    <div class="card border-0 shadow-sm mb-4 position-relative overflow-hidden"
+                        style="background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%); border-left: 5px solid #0d6efd;">
+                        <div class="position-absolute top-0 end-0 p-3 opacity-25">
+                            <i class="bi bi-mortarboard-fill text-primary" style="font-size: 5rem;"></i>
+                        </div>
+                        <div class="card-body p-4 position-relative">
+                            <div
+                                class="d-flex flex-column flex-md-row align-items-center justify-content-between gap-4">
+                                <div class="d-flex align-items-center">
+                                    <div class="rounded-circle p-3 d-flex align-items-center justify-content-center shadow-sm bg-white"
+                                        style="width: 64px; height: 64px;">
+                                        <i class="bi bi-rocket-takeoff-fill text-primary fs-3"></i>
+                                    </div>
+                                    <div class="ms-3">
+                                        <div class="badge bg-primary mb-1 px-3 py-1 rounded-pill">Pack Formation</div>
+                                        <h4 class="fw-bold mb-1" style="color: #0d6efd;">Solution Complète</h4>
+                                        <p class="text-muted mb-0">Tout pour réussir vos sessions.</p>
                                     </div>
                                 </div>
-                            </div>
-                        </c:if>
 
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <a href="${pageContext.request.contextPath}/workspaces"
-                                class="btn btn-outline-secondary me-md-2">Annuler</a>
-                            <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">
-                                <i class="bi bi-check-circle me-2"></i>Confirmer la reservation
-                            </button>
+                                <div class="bg-white p-3 rounded-3 shadow-sm d-none d-lg-block border">
+                                    <ul class="list-unstyled mb-0 small text-muted">
+                                        <li class="mb-1"><i
+                                                class="bi bi-check-circle-fill text-primary me-2"></i>Vidéoprojecteur
+                                        </li>
+                                        <li class="mb-1"><i
+                                                class="bi bi-check-circle-fill text-primary me-2"></i>Tableau Blanc</li>
+                                        <li><i class="bi bi-check-circle-fill text-primary me-2"></i>Pause Café & Snacks
+                                        </li>
+                                    </ul>
+                                </div>
+
+                                <div class="text-center text-md-end">
+                                    <div class="mb-2">
+                                        <span class="fs-5 fw-bold text-success">-15%</span>
+                                        <span class="text-muted small">sur les suppléments</span>
+                                    </div>
+                                    <button type="button"
+                                        class="btn btn-primary px-4 py-2 shadow-sm rounded-pill hover-scale"
+                                        onclick="activateTrainingBundle()">
+                                        <i class="bi bi-lightning-charge me-2"></i>Activer
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                </c:if>
+
+                <c:if test="${not empty supplements}">
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0 fw-bold"><i class="bi bi-plus-circle me-2"></i>Supplements
+                                optionnels
+                            </h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="row g-3">
+                                <c:forEach var="supplement" items="${supplements}">
+                                    <div class="col-md-6">
+                                        <div class="form-check p-3 border rounded bg-light h-100">
+                                            <input class="form-check-input" type="checkbox" name="supplements"
+                                                value="${supplement.id}" id="supp_${supplement.id}">
+                                            <label class="form-check-label w-100" for="supp_${supplement.id}">
+                                                <div class="d-flex justify-content-between align-items-center">
+                                                    <span class="fw-bold">${supplement.libelle}</span>
+                                                    <span
+                                                        class="badge bg-primary rounded-pill">+${supplement.prixUnitaire}
+                                                        DT</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </c:forEach>
+                            </div>
+                        </div>
+                    </div>
+                </c:if>
+
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <a href="${pageContext.request.contextPath}/workspaces"
+                        class="btn btn-outline-secondary me-md-2">Annuler</a>
+                    <button type="submit" class="btn btn-primary px-5 py-2 fw-bold">
+                        <i class="bi bi-check-circle me-2"></i>Confirmer la reservation
+                    </button>
                 </div>
+                </form>
+                </div>
+
+                <!-- Reviews Section -->
+                <c:if test="${not empty reviews}">
+                    <div class="mt-5">
+                        <h4 class="mb-4 fw-bold">Avis des utilisateurs (${reviews.size()})</h4>
+                        <div class="row g-4">
+                            <c:forEach var="review" items="${reviews}">
+                                <div class="col-md-6">
+                                    <div class="card border-0 shadow-sm h-100">
+                                        <div class="card-body">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <div class="d-flex align-items-center">
+                                                    <div class="bg-light rounded-circle p-2 me-2">
+                                                        <i class="bi bi-person-fill text-muted"></i>
+                                                    </div>
+                                                    <div>
+                                                        <h6 class="mb-0 fw-bold">${review.utilisateur.nom}</h6>
+                                                        <small class="text-muted">
+                                                            <fmt:parseDate value="${review.dateReview}"
+                                                                pattern="yyyy-MM-dd'T'HH:mm:ss" var="parsedDate"
+                                                                type="both" />
+                                                            <fmt:formatDate value="${parsedDate}"
+                                                                pattern="dd MMM yyyy" />
+                                                        </small>
+                                                    </div>
+                                                </div>
+                                                <div class="text-warning small">
+                                                    <c:forEach begin="1" end="5" var="i">
+                                                        <c:choose>
+                                                            <c:when test="${review.note >= i}">
+                                                                <i class="bi bi-star-fill"></i>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <i class="bi bi-star"></i>
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </c:forEach>
+                                                </div>
+                                            </div>
+                                            <p class="card-text text-muted small fst-italic">"${review.commentaire}"</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                    </div>
+                </c:if>
             </main>
 
             <footer class="bg-dark text-light py-4 mt-auto">

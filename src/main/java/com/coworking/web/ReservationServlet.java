@@ -36,6 +36,11 @@ public class ReservationServlet extends HttpServlet {
                 if (espace != null) {
                     req.setAttribute("prixBase", espace.getPrixHoraire());
                     req.setAttribute("prixReduit", espace.getPrixHoraire().multiply(new java.math.BigDecimal("0.8")));
+
+                    // Fetch reviews for this workspace
+                    com.coworking.dao.ReviewDAO reviewDAO = new com.coworking.dao.ReviewDAO();
+                    List<Review> reviews = reviewDAO.findByEspace(espaceId);
+                    req.setAttribute("reviews", reviews);
                 }
             }
             req.getRequestDispatcher("/WEB-INF/views/reservationForm.jsp").forward(req, resp);
