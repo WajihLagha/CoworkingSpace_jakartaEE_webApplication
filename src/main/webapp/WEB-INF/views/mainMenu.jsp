@@ -73,7 +73,7 @@
         </header>
 
         <main class="flex-grow-1 py-5">
-            <div class="container">
+            <div class="container fade-in-up">
                 <c:choose>
                     <c:when test="${sessionScope.utilisateur.typeUtilisateur == 'ADMIN'}">
                         <div class="text-center mb-5">

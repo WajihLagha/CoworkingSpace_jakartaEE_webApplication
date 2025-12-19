@@ -46,7 +46,7 @@
 
                 <!-- Main Content (Form) -->
                 <div class="auth-main">
-                    <div class="auth-form-container">
+                    <div class="auth-form-container fade-in-up">
                         <div class="auth-header">
                             <a href="${pageContext.request.contextPath}/" class="auth-logo d-lg-none">CoworkSpace</a>
                             <h1 class="auth-title">Bon retour !</h1>

@@ -60,7 +60,7 @@
             </header>
 
             <main class="flex-grow-1 py-5">
-                <div class="container">
+                <div class="container fade-in-up">
                     <div class="mb-4">
                         <a href="${pageContext.request.contextPath}/chooseType" class="btn btn-outline-secondary">
                             <i class="bi bi-arrow-left me-2"></i>Retour au choix du type

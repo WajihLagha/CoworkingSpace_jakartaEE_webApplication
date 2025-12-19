@@ -151,8 +151,7 @@
 
                         <c:if test="${espace.typeEspace == 'SALLE_REUNION' && not empty supplements}">
                             <!-- Smart Bundle Card -->
-                            <div class="card border-0 shadow-sm mb-4 position-relative overflow-hidden"
-                                style="background: linear-gradient(135deg, #fdfbf7 0%, #fff 100%); border-left: 5px solid #ffc107;">
+                            <div class="card bundle-card bundle-meeting mb-4 shadow-soft">
                                 <div class="position-absolute top-0 end-0 p-3 opacity-25">
                                     <i class="bi bi-stars text-warning" style="font-size: 5rem;"></i>
                                 </div>
@@ -206,8 +205,7 @@
 
                 <c:if test="${espace.typeEspace == 'SALLE_FORMATION' && not empty supplements}">
                     <!-- Training Bundle Card -->
-                    <div class="card border-0 shadow-sm mb-4 position-relative overflow-hidden"
-                        style="background: linear-gradient(135deg, #e3f2fd 0%, #fff 100%); border-left: 5px solid #0d6efd;">
+                    <div class="card bundle-card bundle-training mb-4 shadow-soft">
                         <div class="position-absolute top-0 end-0 p-3 opacity-25">
                             <i class="bi bi-mortarboard-fill text-primary" style="font-size: 5rem;"></i>
                         </div>
